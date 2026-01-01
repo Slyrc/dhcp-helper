@@ -10,10 +10,9 @@ RUN apk add --no-cache build-base linux-headers git && \
 
 FROM scratch
 
-COPY --from=builder \
-  /root/dhcp-helper/src/dhcp-helper /dhcp-helper \
-  /root/dhcp-helper/src/passwd /etc/passwd \
-  /root/dhcp-helper/src/ /etc/group
+COPY --from=builder /root/dhcp-helper/src/dhcp-helper /dhcp-helper
+COPY --from=builder /root/dhcp-helper/src/passwd /etc/passwd
+COPY --from=builder /root/dhcp-helper/src/group  /etc/group
 
 EXPOSE 67/udp
 
